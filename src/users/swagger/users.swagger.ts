@@ -1,11 +1,29 @@
-import { ZenSwagger } from 'nest-swagger-zen';
+import { ZenSwagger, ZenBodyExamples } from 'nest-swagger-zen';
 import { CreateUserDto, UpdateUserDto, UserResponseDto } from '../dto/users.dto';
+
+const createUserExamples: ZenBodyExamples = {
+  'Usuario Estándar': {
+    value: {
+      name: 'John Doe',
+      email: 'john@example.com'
+    },
+    summary: 'Ejemplo de un usuario común'
+  },
+  'Usuario VIP': {
+    value: {
+      name: 'Jane Smith',
+      email: 'jane.vip@example.com'
+    },
+    summary: 'Ejemplo de un usuario con correo corporativo'
+  }
+};
 
 export const CreateUserDocs = () => ZenSwagger({
   summary: 'Create a new user',
   description: 'Endpoint to create a new user.',
   status: 201,
   body: CreateUserDto,
+  bodyExamples: createUserExamples,
   response: UserResponseDto
 });
 
